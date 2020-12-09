@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h1>All Tasks</h1>
+      <ol>
+        <li v-for="task in tasks"  v-text="task.description">
+        </li>
+      </ol>
+
+      <h1>Incomplete Tasks</h1>
+      <ol>
+        <li v-for="task in incompleteTask" v-text="task.description">
+
+        </li>
+      </ol>
+      <h1>completed Task</h1>
+      <ol>
+        <li v-for="task in completedTask" v-text="task.description"></li>
+      </ol>
+
+    </div>
+    <script>
+      var app = new Vue({
+        el:'#root',
+        data:{
+          tasks:[
+            {description:'Go to the club',completed:false},
+            {description:'Go to the club',completed:false},
+            {description:'Go to the farm',completed:true},
+            {description:'Go to the club',completed:false},
+            {description:'Go to the club',completed:true},
+            {description:'Go to the gym',completed:false},
+            {description:'visit to the club',completed:false},
+          ]
+        },
+        computed:{
+          incompleteTask(){
+            return this.tasks.filter(task=>!task.completed);
+
+          },
+          completedTask(){
+            return this.tasks.filter(task=>task.completed);
+          }
+        }
+      })
+
+    </script>
+
+  </body>
+</html>
